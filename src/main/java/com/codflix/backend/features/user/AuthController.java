@@ -43,6 +43,12 @@ public class AuthController {
             response.redirect("/login");
             return "KO";
         }
+        else if(user.getActivated() == false){
+            logger.info("Account not activated. Redirect to login");
+            response.removeCookie("session");
+            response.redirect("/login");
+            return "KO";
+        }
 
         // Create session
         Session session = request.session(true);
@@ -55,7 +61,7 @@ public class AuthController {
     }
 
     public String signUp(Request request, Response response) {
-        if(request.requestMethod().equals("GET")){
+        if (request.requestMethod().equals("GET")) {
             Map<String, Object> model = new HashMap<>();
             return Template.render("auth_signup.html", model);
         }
@@ -63,22 +69,35 @@ public class AuthController {
         Map<String, String> query = URLUtils.decodeQuery(request.body());
         String email = query.get("email");
         String password = null;
-        if (query.get("password").equals(query.get("password_confirm"))){
+
+        if (query.get("password").equals(query.get("password_confirm"))) {
             password = query.get("password");
         }
 
-        Connection connection = Database.get().getConnection();
-        try{
-            PreparedStatement st = connection.prepareStatement("INSERT INTO user (id, email, password) VALUES (null , ?, ?)");
-            st.setString(1, email);
-            st.setString(2, password);
+        if (userDao.getUserByCredentials(email, password) == null) {
 
-            st.executeUpdate();
+            Connection connection = Database.get().getConnection();
+            try {
+                PreparedStatement st = connection.prepareStatement("INSERT INTO user (id, email, password, activated) VALUES (null , ?, ?, ?)");
+                st.setString(1, email);
+                st.setString(2, password);
+                st.setBoolean(3, false);
+
+                st.executeUpdate();
+
+                response.redirect("/login");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            logger.info("User already signed");
+            response.removeCookie("session");
+            response.redirect("/signup");
+            return "KO";
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-        return "";
+
+        return "OK";
     }
 
     public String logout(Request request, Response response) {

@@ -4,11 +4,13 @@ public class User {
     private int id;
     private String email;
     private String password;
+    private Boolean activated;
 
-    public User(int id, String email, String password) {
+    public User(int id, String email, String password, Boolean activated) {
         this.id = id;
         this.email = email;
         this.password = password;
+        this.activated = activated;
     }
 
     @Override
@@ -17,6 +19,7 @@ public class User {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", activated='" + activated + '\'' +
                 '}';
     }
 
@@ -42,5 +45,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getActivated() {
+        return activated;
+    }
+
+    public void setActivated(Boolean activated) {
+        this.activated = activated;
     }
 }
