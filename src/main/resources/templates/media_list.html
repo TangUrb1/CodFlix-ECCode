@@ -17,10 +17,9 @@
 <div class="media-list">
     #foreach($media in $medias)
         <a class="item" href="/medias/$media.getId()">
-            <div class="video">
+            <div class="poster">
                 <div>
-                    <iframe allowfullscreen="" frameborder="0"
-                            src="$media.getTrailerUrl()" ></iframe>
+                    <img src="$media.getPosterUrl()" />
                 </div>
             </div>
             <div class="title">

@@ -11,8 +11,10 @@ public class Media {
     private Date releaseDate;
     private String summary;
     private String trailerUrl;
+    private String posterUrl;
+    private String actors;
 
-    public Media(int id, int genreId, String title, String type, String status, Date releaseDate, String summary, String trailerUrl) {
+    public Media(int id, int genreId, String title, String type, String status, Date releaseDate, String summary, String trailerUrl, String posterUrl, String actors) {
         this.id = id;
         this.genreId = genreId;
         this.title = title;
@@ -21,6 +23,8 @@ public class Media {
         this.releaseDate = releaseDate;
         this.summary = summary;
         this.trailerUrl = trailerUrl;
+        this.posterUrl = posterUrl;
+        this.actors = actors;
     }
 
     @Override
@@ -34,6 +38,8 @@ public class Media {
                 ", releaseDate=" + releaseDate +
                 ", summary='" + summary + '\'' +
                 ", trailerUrl='" + trailerUrl + '\'' +
+                ", posterUrl='" + posterUrl + '\'' +
+                ", actors='" + actors + '\'' +
                 '}';
     }
 
@@ -99,6 +105,22 @@ public class Media {
 
     public void setTrailerUrl(String trailerUrl) {
         this.trailerUrl = trailerUrl;
+    }
+
+    public String getPosterUrl() {
+        return posterUrl;
+    }
+
+    public void setPosterUrl(String posterUrl) {
+        this.posterUrl = posterUrl;
+    }
+
+    public String getActors() {
+        return actors;
+    }
+
+    public void setActors(String actors) {
+        this.actors = actors;
     }
 }
 

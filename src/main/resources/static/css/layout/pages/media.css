@@ -18,11 +18,12 @@
     padding-bottom: 25px;
 }
 
-.media-list .item .video {
+.media-list .item .poster {
     width: 100%;
+    align-content: center;
 }
 
-.media-list .item .video iframe {
+.media-list .item .poster img {
     width: 100%;
 }
 
@@ -56,4 +57,19 @@
     .media-list .item {
         flex-basis: 100%;
     }
+}
+.media-detail {
+    margin-bottom: 50px;
+}
+
+.media-detail iframe {
+    margin: auto;
+}
+.media-detail .synopsis {
+    margin-top: 20px;
+}
+.media-detail .synopsis p {
+    display: block;
+    margin: 5px;
+
 }
