@@ -1,6 +1,7 @@
 package com.codflix.backend.features.user;
 
 import com.codflix.backend.core.Conf;
+import com.codflix.backend.core.Database;
 import com.codflix.backend.core.Template;
 import com.codflix.backend.models.User;
 import com.codflix.backend.utils.URLUtils;
@@ -10,6 +11,10 @@ import spark.Request;
 import spark.Response;
 import spark.Session;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,8 +55,30 @@ public class AuthController {
     }
 
     public String signUp(Request request, Response response) {
-        Map<String, Object> model = new HashMap<>();
-        return Template.render("auth_signup.html", model);
+        if(request.requestMethod().equals("GET")){
+            Map<String, Object> model = new HashMap<>();
+            return Template.render("auth_signup.html", model);
+        }
+
+        Map<String, String> query = URLUtils.decodeQuery(request.body());
+        String email = query.get("email");
+        String password = null;
+        if (query.get("password").equals(query.get("password_confirm"))){
+            password = query.get("password");
+        }
+
+        Connection connection = Database.get().getConnection();
+        try{
+            PreparedStatement st = connection.prepareStatement("INSERT INTO user (id, email, password) VALUES (null , ?, ?)");
+            st.setString(1, email);
+            st.setString(2, password);
+
+            st.executeUpdate();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public String logout(Request request, Response response) {
