@@ -72,7 +72,7 @@ public class MediaDao {
                 rs.getInt(1), // id
                 rs.getInt(2), // genre_id
                 rs.getString(3), // title
-                rs.getString(4), // type
+                rs.getInt(4), // type_id
                 rs.getString(5), // status
                 DATE_FORMAT.parse(rs.getString(6)), // release_date
                 rs.getString(7), // summary

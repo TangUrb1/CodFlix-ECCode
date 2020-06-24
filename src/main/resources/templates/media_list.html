@@ -14,18 +14,40 @@
     </div>
 </div>
 
+
+<div style="font-weight: bold">Films</div>
 <div class="media-list">
     #foreach($media in $medias)
-        <a class="item" href="/medias/$media.getId()">
-            <div class="poster">
-                <div>
-                    <img src="$media.getPosterUrl()" />
-                </div>
+    #if($media.getTypeId() == 1)
+    <a class="item" href="/medias/$media.getId()">
+        <div class="poster">
+            <div>
+                <img src="$media.getPosterUrl()"/>
             </div>
-            <div class="title">
-                $media.getTitle()
+        </div>
+        <div class="title">
+            $media.getTitle()
+        </div>
+    </a>
+    #end
+    #end
+</div>
+
+<div style="font-weight: bold">Séries</div>
+<div class="media-list">
+    #foreach($media in $medias)
+    #if($media.getTypeId() == 2)
+    <a class="item" href="/medias/$media.getId()">
+        <div class="poster">
+            <div>
+                <img src="$media.getPosterUrl()"/>
             </div>
-        </a>
+        </div>
+        <div class="title">
+            $media.getTitle()
+        </div>
+    </a>
+    #end
     #end
 </div>
 #end

@@ -6,7 +6,7 @@ public class Media {
     private int id;
     private int genreId;
     private String title;
-    private String type;
+    private int typeId;
     private String status;
     private Date releaseDate;
     private String summary;
@@ -14,11 +14,11 @@ public class Media {
     private String posterUrl;
     private String actors;
 
-    public Media(int id, int genreId, String title, String type, String status, Date releaseDate, String summary, String trailerUrl, String posterUrl, String actors) {
+    public Media(int id, int genreId, String title, int typeId, String status, Date releaseDate, String summary, String trailerUrl, String posterUrl, String actors) {
         this.id = id;
         this.genreId = genreId;
         this.title = title;
-        this.type = type;
+        this.typeId = typeId;
         this.status = status;
         this.releaseDate = releaseDate;
         this.summary = summary;
@@ -33,7 +33,7 @@ public class Media {
                 "id=" + id +
                 ", genreId=" + genreId +
                 ", title='" + title + '\'' +
-                ", type='" + type + '\'' +
+                ", type='" + typeId + '\'' +
                 ", status='" + status + '\'' +
                 ", releaseDate=" + releaseDate +
                 ", summary='" + summary + '\'' +
@@ -67,12 +67,12 @@ public class Media {
         this.title = title;
     }
 
-    public String getType() {
-        return type;
+    public int getTypeId() {
+        return typeId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
     }
 
     public String getStatus() {
