@@ -1,5 +1,7 @@
 package com.codflix.backend.models;
 
+import com.codflix.backend.utils.DateFormat;
+
 import java.util.Date;
 
 public class Media {
@@ -83,8 +85,8 @@ public class Media {
         this.status = status;
     }
 
-    public Date getReleaseDate() {
-        return releaseDate;
+    public String getReleaseDate() {
+        return DateFormat.dateFormat(releaseDate);
     }
 
     public void setReleaseDate(Date releaseDate) {
