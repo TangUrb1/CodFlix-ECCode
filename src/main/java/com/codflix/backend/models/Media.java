@@ -2,6 +2,7 @@ package com.codflix.backend.models;
 
 import com.codflix.backend.utils.DateFormat;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Media {
@@ -15,8 +16,9 @@ public class Media {
     private String trailerUrl;
     private String posterUrl;
     private String actors;
+    private int duration;
 
-    public Media(int id, int genreId, String title, int typeId, String status, Date releaseDate, String summary, String trailerUrl, String posterUrl, String actors) {
+    public Media(int id, int genreId, String title, int typeId, String status, Date releaseDate, String summary, String trailerUrl, String posterUrl, String actors, int duration) {
         this.id = id;
         this.genreId = genreId;
         this.title = title;
@@ -27,6 +29,7 @@ public class Media {
         this.trailerUrl = trailerUrl;
         this.posterUrl = posterUrl;
         this.actors = actors;
+        this.duration = duration;
     }
 
     @Override
@@ -42,6 +45,7 @@ public class Media {
                 ", trailerUrl='" + trailerUrl + '\'' +
                 ", posterUrl='" + posterUrl + '\'' +
                 ", actors='" + actors + '\'' +
+                ", duration='" + duration + '\'' +
                 '}';
     }
 
@@ -123,6 +127,14 @@ public class Media {
 
     public void setActors(String actors) {
         this.actors = actors;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }
 

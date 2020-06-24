@@ -21,13 +21,12 @@
     #if($media.getTypeId() == 1)
     <a class="item" href="/medias/$media.getId()">
         <div class="poster">
-            <div>
-                <img src="$media.getPosterUrl()"/>
-            </div>
+            <img src="$media.getPosterUrl()">
+
         </div>
-        <div class="title">
-            $media.getTitle()
-        </div>
+        <div class="title">$media.getTitle()</div>
+        <div class="informations">$media.getReleaseDate()</div>
+        <div class="informations">$media.getDuration() minutes</div>
     </a>
     #end
     #end

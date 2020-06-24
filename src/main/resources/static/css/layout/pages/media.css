@@ -15,7 +15,7 @@
 
     background: #1f1f1f;
 
-    padding-bottom: 25px;
+    padding-bottom: 5px;
 }
 
 .media-list .item .poster {
@@ -72,4 +72,17 @@
     display: block;
     margin: 5px;
 
+}
+
+.item:hover .informations{
+    display: block;
+}
+
+.informations {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    display: none;
+    color: var(--color-red);
+    font-size: 10px;
 }

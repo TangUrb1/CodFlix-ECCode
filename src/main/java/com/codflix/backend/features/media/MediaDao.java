@@ -78,7 +78,8 @@ public class MediaDao {
                 rs.getString(7), // summary
                 rs.getString(8), // trailer_url
                 rs.getString(9), // poster_url
-                rs.getString(10) // actors
+                rs.getString(10), // actors
+                rs.getInt(11) //duration
         );
     }
 }

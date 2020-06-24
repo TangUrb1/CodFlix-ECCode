@@ -3,8 +3,10 @@ package com.codflix.backend.features.user;
 import com.codflix.backend.core.Conf;
 import com.codflix.backend.core.Database;
 import com.codflix.backend.core.Template;
+//import com.codflix.backend.features.other.SendEmail;
 import com.codflix.backend.models.User;
 import com.codflix.backend.utils.URLUtils;
+import com.codflix.backend.features.other.HashToSHA256;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.Request;
@@ -36,7 +38,7 @@ public class AuthController {
         String password = query.get("password");
 
         // Authenticate user
-        User user = userDao.getUserByCredentials(email, password);
+        User user = userDao.getUserByCredentials(email, HashToSHA256.hashToSHA256(password));
         if (user == null) {
             logger.info("User not found. Redirect to login");
             response.removeCookie("session");
@@ -71,7 +73,7 @@ public class AuthController {
         String password = null;
 
         if (query.get("password").equals(query.get("password_confirm"))) {
-            password = query.get("password");
+            password = HashToSHA256.hashToSHA256(query.get("password"));
         }
 
         if (userDao.getUserByCredentials(email, password) == null) {
@@ -84,6 +86,8 @@ public class AuthController {
                 st.setBoolean(3, false);
 
                 st.executeUpdate();
+
+                //SendEmail.sendEmail("register@codflix.com", email, "Welcome to Cod'Flix ! Please assure to activate your account by clicking on the following link", "Welcome on Cod'Flix");
 
                 response.redirect("/login");
             } catch (SQLException e) {
