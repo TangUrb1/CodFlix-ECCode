@@ -7,7 +7,12 @@
         <h1>$media.getTitle()</h1>
         <div>$media.getReleaseDate().toUpperCase()</div>
         <div>$media.getActors()</div>
+        #if($media.getTypeId() == 1)
         <div>$media.getDuration() minutes</div>
+        #end
+        #if($media.getTypeId() == 2)
+        <div>$media.getDuration() saisons</div>
+        #end
     </div>
 
     <iframe width="700" height="450" src="$media.getTrailerUrl()" frameborder="0" allowfullscreen></iframe>
@@ -16,6 +21,29 @@
         <h2>Synopsis</h2>
         <p>$media.getSummary()</p>
     </div>
+
+    #if($media.getTypeId() == 2)
+    <div>
+        #foreach($season in $seasons)
+        <div>Saison $season[0].getSeason_index()</div>
+        <div class="media-list">
+            #foreach($episode in $season)
+            <a class="item">
+                <div class="video">
+                    <div>
+                        <iframe allowfullscreen="" frameborder="0"
+                                src="$episode.getUrl()" ></iframe>
+                    </div>
+                </div>
+                <div class="title">Episode $episode.getEpisode_index() -- $episode.getTitle()</div>
+                <div class="informations">$episode.getDuration() minutes</div>
+            </a>
+            #end
+        </div>
+        #end
+    </div>
+    #end
+
 
 </div>
 #end
