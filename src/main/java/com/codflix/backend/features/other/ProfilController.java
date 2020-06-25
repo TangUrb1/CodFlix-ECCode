@@ -25,6 +25,7 @@ public class ProfilController {
     private static final Logger logger = LoggerFactory.getLogger(ProfilController.class);
     private final UserDao userDao = new UserDao();
 
+    //Get the informations on the profil form and up to date the user on the database
     public String update(Request request, Response response) {
         if (request.requestMethod().equals("GET") || request.requestMethod().equals("POST")) {
             Map<String, Object> model = new HashMap<>();
@@ -45,10 +46,12 @@ public class ProfilController {
             Connection connection = Database.get().getConnection();
 
             try {
+                //Change the email with the new email
                 PreparedStatement st1 = connection.prepareStatement("UPDATE user SET email = ? WHERE user.id = ?");
                 st1.setString(1, query.get("new_email"));
                 st1.setInt(2, user.getId());
 
+                //Change tu password with the new password
                 PreparedStatement st2 = connection.prepareStatement("UPDATE user SET password=? WHERE user.id=?");
                 st2.setString(1, query.get("new_password"));
                 st2.setInt(2, user.getId());

@@ -10,6 +10,7 @@ import java.util.List;
 
 public class EpisodeDao {
 
+    //Get all of the episodes of all of the seasons of a serie
     public List<Episode> getEpisodesByMediaId(int media_id) {
         List<Episode> episodes = new ArrayList<>();
 
@@ -28,11 +29,12 @@ public class EpisodeDao {
         return episodes;
     }
 
+    //Get all of the episodes of a serie, sorted in lists by seasons
     public List<List<Episode>> getEpisodeBySeason(int media_id){
 
-        List<List<Episode>> episodeBySeason = new ArrayList<>();
+        List<List<Episode>> episodeBySeason = mapToEpisodeListBySeason(getEpisodesByMediaId(media_id));
 
-        episodeBySeason = mapToEpisodeListBySeason(getEpisodesByMediaId(media_id));
+
 
         return episodeBySeason;
     }

@@ -17,6 +17,7 @@ public class ContactController {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
+    //Get the informations on the contact form and create a mail with them
     public String contact(Request request, Response response) {
 
         if(request.requestMethod().equals("GET")){
@@ -30,6 +31,7 @@ public class ContactController {
         String subject = query.get("subject");
         String message = query.get("message");
 
+        //Code to send a mail but the API isn't known by IntelliJ
         //SendEmail.sendEmail(email, "contact@codflix.com", message, subject);
 
         response.redirect("/contact");

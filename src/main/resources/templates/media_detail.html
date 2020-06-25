@@ -3,6 +3,7 @@
 
 <div class="media-detail">
 
+    <!-- Show the information of the media (Title, release date, main actors, duration for a film, or number of seasons for a serie, and show the trailer -->
     <div class="head">
         <h1>$media.getTitle()</h1>
         <div>$media.getReleaseDate().toUpperCase()</div>
@@ -22,6 +23,7 @@
         <p>$media.getSummary()</p>
     </div>
 
+    <!-- List the episodes, sort by seasons, if the media is a serie -->
     #if($media.getTypeId() == 2)
     <div>
         #foreach($season in $seasons)

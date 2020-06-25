@@ -14,6 +14,7 @@ public class HashToSHA256 {
 
     private static final Logger logger = LoggerFactory.getLogger(HashToSHA256.class);
 
+    //Transform a string into a encoded string
     public static String hashToSHA256(String password) {
         String hashPassword = null;
         try {
